@@ -16,7 +16,7 @@ class paddle():
     def __init__(self, x, y) -> None:
         self.x = x
         self.y = y
-        self.wid = 20
+        self.wid = 30
         self.hei = 150
     
     def drop_it_like_its_HOT(self):
@@ -36,19 +36,31 @@ class paddle():
 class ballz(paddle):
     def __init__(self, x, y) -> None:
         super().__init__(x, y)
-        self.wid = 50
-        self.hei = 50
-        self.vel = [2, 2]
+        self.wid = 30
+        self.hei = 30
+        self.vel = [2, -2]
 
     def move(self):
         self.x += self.vel[0]
-        self.y -= self.vel[1]
+        self.y += self.vel[1]
+        if self.y > 570:
+            self.y = 569
+            self.vel[1] = -2
+        elif self.y < 0:
+            self.y = 1
+            self.vel[1] = 2
+        
+        if (self.x > 2):
+            pass
+
+def start():
+    pass
 
 def main():
 
-    p1 = paddle(30, 30)
+    p1 = paddle(20, 30)
     p2 = paddle(750, 30)
-    ball = ballz(350, 250)
+    ball = ballz(380, 280)
 
     run = True
     while run:
@@ -69,6 +81,7 @@ def main():
                     p1.move(False)
         
         ball.move()
+        print(ball.x, ball.y)
         p1.drop_it_like_its_HOT()
         p2.drop_it_like_its_HOT()
         ball.drop_it_like_its_HOT()
